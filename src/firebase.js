@@ -3,15 +3,16 @@ import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, si
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { toast } from "react-toastify";
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAllIwDselLpLwHI8mhPPtgA2cqn4fzWv0",
+//   apiKey: "AIzaSyAllIwDselLpLwHI8mhPPtgA2cqn4fzWv0",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "netflix-clone-bdc04.firebaseapp.com",
   projectId: "netflix-clone-bdc04",
   storageBucket: "netflix-clone-bdc04.appspot.com",
   messagingSenderId: "376662652025",
   appId: "1:376662652025:web:aee2274bbb7250aee110a8"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -38,8 +39,7 @@ const login = async(email, password)=>{
         await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
         console.log(error);
-        toast.error(error.code.split('/')[1].split('-').join(" "));
-
+        toast.error(error.code);
     }
 }
 

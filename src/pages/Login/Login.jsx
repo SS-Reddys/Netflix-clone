@@ -17,6 +17,7 @@ const Login = () => {
         setLoading(true);
         if (signState === "Sign In") {
             await login(email, password);
+            console.log(process.env.REACT_APP_API);
         } else {
             await signup(name, email, password);
         }
